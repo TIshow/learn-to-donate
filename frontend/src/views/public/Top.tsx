@@ -12,6 +12,109 @@ import Color from '../styles/Color';
 const Top: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<Number>(0);
+  const [questionNumber, setQuestionNumber] = useState<Number>(0);
+
+  const NextQuestion = () => {
+    if (questionNumber === 0) {
+      setQuestionNumber(1);
+    } else if (questionNumber === 1) {
+      setQuestionNumber(2);
+    } else if (questionNumber === 2) {
+      setQuestionNumber(3);
+    } else if (questionNumber === 3) {
+      setQuestionNumber(4);
+    } else if (questionNumber === 4) {
+      setQuestionNumber(5);
+    }
+  };
+
+  const Question = () => {
+    if (questionNumber === 0) {
+      return (
+        <QuizContainer>
+          <div style={{ fontSize: "24px", padding: "16px 8px" }}>What is the name of the Ukrainian Prime Minister?</div>
+          <div style={{ fontSize: "16px", padding: "16px 8px" }}>
+            <SelectButton style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(1)}>Aleksandr Lukashenko</SelectButton>
+            <SelectButton style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(2)}>Denys Shmyhal</SelectButton>
+            <SelectButton style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(3)}>Volodymyr Zelenskyy</SelectButton>
+            <SelectButton style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(4)}>Mikhail Mishustin</SelectButton>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+          </div>
+        </QuizContainer>
+      )
+    } else if (questionNumber === 1) {
+      return (
+        <QuizContainer>
+          <div style={{ fontSize: "24px", padding: "16px 8px" }}>Where is the capital of Ukraine?</div>
+          <div style={{ fontSize: "16px", padding: "16px 8px" }}>
+            <SelectButton style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(1)}>New York</SelectButton>
+            <SelectButton style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(2)}>Kiev</SelectButton>
+            <SelectButton style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(3)}>Tallinn</SelectButton>
+            <SelectButton style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(4)}>Moscow</SelectButton>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+          </div>
+        </QuizContainer>
+      )
+    } else if (questionNumber === 2) {
+      return (
+        <QuizContainer>
+          <div style={{ fontSize: "24px", padding: "16px 8px" }}>What does the yellow color of the Ukrainian flag indicate?</div>
+          <div style={{ fontSize: "16px", padding: "16px 8px" }}>
+            <SelectButton style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(1)}>Wheat</SelectButton>
+            <SelectButton style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(2)}>Corn</SelectButton>
+            <SelectButton style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(3)}>Potatoes</SelectButton>
+            <SelectButton style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(4)}>Banana</SelectButton>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+          </div>
+        </QuizContainer>
+      )
+    } else if (questionNumber === 3) {
+      return (
+        <QuizContainer>
+          <div style={{ fontSize: "24px", padding: "16px 8px" }}>How big is Ukraine's population?</div>
+          <div style={{ fontSize: "16px", padding: "16px 8px" }}>
+            <SelectButton style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(1)}>44.13 million</SelectButton>
+            <SelectButton style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(2)}>20.22 million</SelectButton>
+            <SelectButton style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(3)}>5 million</SelectButton>
+            <SelectButton style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(4)}>100.11 million</SelectButton>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+          </div>
+        </QuizContainer>
+      )
+    } else if (questionNumber === 4) {
+      return (
+        <QuizContainer>
+          <div style={{ fontSize: "24px", padding: "16px 8px" }}>In what year was the Ukrainian Ground Force founded?</div>
+          <div style={{ fontSize: "16px", padding: "16px 8px" }}>
+            <SelectButton style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(1)}>1991</SelectButton>
+            <SelectButton style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(2)}>2001</SelectButton>
+            <SelectButton style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(3)}>1881</SelectButton>
+            <SelectButton style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(4)}>1771</SelectButton>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+          </div>
+        </QuizContainer>
+      )
+    } else {
+      return (
+        <QuizContainer>
+          <div style={{ position: "relative", top: "50%" }}> Congrats !!</div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <NextButton onClick={() => NextQuestion()}>Result</NextButton>
+          </div>
+        </QuizContainer>
+      )
+    }
+  }
 
   // if (loading) return <Loading />;
 
@@ -21,24 +124,13 @@ const Top: React.FC = () => {
         <TopBar>
           <Title onClick={() => navigate('/')}>
             {/* <img src={LOGO} style={{ maxWidth: '60%', height: 'auto' }} alt={"LOGO"} /> */}
-            Learn to Donate
+            Sket
           </Title>
           <LoginButton onClick={() => { }}>Login</LoginButton>
           <SignupButton onClick={() => { }}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>
-          <QuizContainer>
-            <div style={{ fontSize: "24px", padding: "16px 8px" }}>What is the name of the Ukrainian Prime Minister?</div>
-            <div style={{ fontSize: "16px", padding: "16px 8px" }}>
-              <SelectButton style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(1)}>Aleksandr Lukashenko</SelectButton>
-              <SelectButton style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(2)}>Denys Shmyhal</SelectButton>
-              <SelectButton style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(3)}>Volodymyr Zelenskyy</SelectButton>
-              <SelectButton style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}} onClick={() => setSelected(4)}>Mikhail Mishustin</SelectButton>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <NextButton>Next</NextButton>
-            </div>
-          </QuizContainer>
+          {Question()}
         </BodyContainer>
       </TopContainer>
     </>
@@ -46,128 +138,128 @@ const Top: React.FC = () => {
 };
 
 const TopContainer = styled.div`
-  position: relative;
-  background-color: ${Color.BASE_COLOR};
-  max-width: 100%;
-  height: 1000px;
-`
+    position: relative;
+    background-color: ${Color.BASE_COLOR};
+    max-width: 100%;
+    height: 1000px;
+    `
 
 const BodyContainer = styled.div`
-  padding: 160px 0;
-  background-color: Transparent;
-`
+    padding: 160px 0;
+    background-color: Transparent;
+    `
 
 const Title = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-`
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    `
 
 const TopBar = styled.div`
-  position: fixed;
-  display: flex;
-  z-index: 1;
-  background-color: Transparent;
-  width: 100%; 
-  height: 60px;
-  top: 4%;
-  left: 2%;
-  font-size: 40px;
-  color: ${Color.PRIMARY_COLOR};
-`
+    position: fixed;
+    display: flex;
+    z-index: 1;
+    background-color: Transparent;
+    width: 100%;
+    height: 60px;
+    top: 4%;
+    left: 2%;
+    font-size: 40px;
+    color: ${Color.PRIMARY_COLOR};
+    `
 
 const LoginButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 200px;
-  height: 52px;
-  width: 100px;
-  color: ${Color.PRIMARY_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.PRIMARY_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: ${Color.ACCENT_COLOR};
-  background-color: Transparent;
-  border: 1px solid ${Color.ACCENT_COLOR};
+    position: absolute;
+    top: 20px;
+    right: 200px;
+    height: 52px;
+    width: 100px;
+    color: ${Color.PRIMARY_COLOR};
+    background-color: Transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid ${Color.PRIMARY_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: ${Color.ACCENT_COLOR};
+    background-color: Transparent;
+    border: 1px solid ${Color.ACCENT_COLOR};
 }
-`
+    `
 
 const SignupButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 80px;
-  height: 52px;
-  width: 100px;
-  color: ${Color.PRIMARY_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.PRIMARY_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: ${Color.ACCENT_COLOR};
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    height: 52px;
+    width: 100px;
+    color: ${Color.PRIMARY_COLOR};
+    background-color: Transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid ${Color.PRIMARY_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: ${Color.ACCENT_COLOR};
     background-color: Transparent;
     border: 1px solid ${Color.ACCENT_COLOR};
   }
-`
+    `
 
 const QuizContainer = styled.div`
-  height: 500px;
-  width: 360px;
-  background-color: #FFFFFF;
-  color: #2F2F2F;
-  text-align: center;
-  margin: auto;
-  border-radius: 16px;
-`
+    height: 500px;
+    width: 360px;
+    background-color: #FFFFFF;
+    color: #2F2F2F;
+    text-align: center;
+    margin: auto;
+    border-radius: 16px;
+    `
 
 const NextButton = styled.button`
-  position: relative;
-  width: 100px;
-  height: 40px;
-  margin-top: 16px;
-  color: ${Color.ACCENT_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #FFFFFF;
-  background-color: ${Color.ACCENT_COLOR};
-  border: 1px solid ${Color.ACCENT_COLOR};
+    position: relative;
+    width: 100px;
+    height: 40px;
+    margin-top: 16px;
+    color: ${Color.ACCENT_COLOR};
+    background-color: Transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid ${Color.ACCENT_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: #FFFFFF;
+    background-color: ${Color.ACCENT_COLOR};
+    border: 1px solid ${Color.ACCENT_COLOR};
 }
-`
+    `
 
 const SelectButton = styled.button`
-  position: relative;
-  width: 95%;
-  height: 60px;
-  margin-top: 16px;
-  padding: 16px;
-  background-color: Transparent;
-  font-size: 16px;
-  border: 2px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #FFFFFF;
+    position: relative;
+    width: 95%;
+    height: 60px;
+    margin-top: 16px;
+    padding: 16px;
+    background-color: Transparent;
+    font-size: 16px;
+    border: 2px solid ${Color.ACCENT_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: #FFFFFF;
     background-color: ${Color.ACCENT_COLOR};
     border: 2px solid ${Color.ACCENT_COLOR};
 }
-`
+    `
 
 export default Top;
