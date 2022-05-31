@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // image
-import TOP_IMG from '../static/art_top.jpeg';
+import USER_IMG from '../static/user_icon.png';
 // import LOGO from '../static/logo.png';
 
 // style
@@ -107,9 +107,22 @@ const Top: React.FC = () => {
     } else {
       return (
         <QuizContainer>
-          <div style={{ position: "relative", top: "50%" }}> Congrats !!</div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <NextButton onClick={() => NextQuestion()}>Result</NextButton>
+          <div style={{ padding: '16px' }}>
+            <img src={USER_IMG} style={{ width: '30%', borderRadius: '50%' }} alt={"TOP_IMG"} />
+            <div style={{ paddingTop: '16px' }}>Sket太郎</div>
+            <div>Lv.12</div>
+            <div style={{ width: '100%', height: '16px', marginTop: '16px', border: `2px solid ${Color.ACCENT_COLOR}`, borderRadius: '16px' }}>
+              <div style={{ width: '70%', height: '16px', borderRadius: '16px', backgroundColor: `${Color.ACCENT_COLOR}` }} />
+            </div>
+            <div>次のレベルまであと30sket</div>
+          </div>
+          <div style={{ position: "relative", padding: '16px', margin: '8px 16px', border: `2px solid ${Color.ACCENT_COLOR}`, borderRadius: '16px' }}>
+            <div style={{ fontSize: '40px' }}>Congrats !!</div>
+            <div style={{ marginTop: '16px' }}>あなたのおかげでウクライナ難民の子ども一人の一日分の食事が確保されました！</div>
+            <div>ありがとうございます！</div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <NextButton onClick={() => NextQuestion()}>シェアする</NextButton>
+            </div>
           </div>
         </QuizContainer>
       )
