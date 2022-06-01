@@ -1,12 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // image
-import USER_IMG from '../static/user_icon.png';
+import UNICEF_IMG from '../static/unicef.png';
+import KAMONOHASHI_IMG from '../static/kamonohashi.png';
+import ASHINAGA_IMG from '../static/ashinaga.png';
+import ISHIDAN_IMG from '../static/ishidan.png';
 
 // style
 import styled, { keyframes } from 'styled-components';
 import Color from '../styles/Color';
+
+const data = {
+  organizations: [
+    {
+      title: "UNICEF",
+      description: "The United Nations International Children's Emergency Fund",
+      imageURL: UNICEF_IMG,
+    },
+    {
+      title: "かものはしプロジェクト",
+      description: "売春宿に売られ、無理やり働かされてしまう子どもを助ける",
+      imageURL: KAMONOHASHI_IMG,
+    },
+    {
+      title: "あしなが育英会",
+      description: "病気や災害、自死（自殺）などで親を亡くした子どもたちを助ける",
+      imageURL: ASHINAGA_IMG,
+    },
+    {
+      title: "国境なき医師団",
+      description: "戦闘による死傷者や国外に避難する人が増え続けているウクライナを助ける",
+      imageURL: ISHIDAN_IMG,
+    },
+  ]
+};
 
 const SelectOrganization: React.FC = () => {
   const navigate = useNavigate();
@@ -25,7 +53,20 @@ const SelectOrganization: React.FC = () => {
           <SignupButton onClick={() => { }}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>
-
+          <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: "center" }}>Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span></h1>
+          <CardsContainer>
+            {data?.organizations.slice(0, 40).map((item, index) => (
+              <Link key={index} to={`/`} style={{ textDecoration: 'none' }}>
+                <Card key={index}>
+                  <img src={item.imageURL} style={{ width: '100%' }} alt={"TOP_IMG"} />
+                  <div style={{ padding: '16px' }}>
+                    <h2 style={{ textAlign: 'left' }}>{item.title}</h2>
+                    <p style={{ paddingTop: '8px', textAlign: 'left' }}>{item.description}</p>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </CardsContainer>
         </BodyContainer>
       </TopContainer>
     </>
@@ -114,15 +155,14 @@ const CardsContainer = styled.div`
   grid-gap: 16px;
   grid-template-columns: repeat(auto-fit, 300px);
   justify-content: center;
-  background-color: ${Color.PRIMARY_COLOR};
+  background-color: Transparent;
 `
 
 const Card = styled.div`
   background-color: ${Color.PRIMARY_COLOR};
-  border-radius: 5px;
-  color: #FFFFFF;
+  border-radius: 16px;
+  color: #1D1D1F;
   text-align: center;
-  margin: 16px 0;
 `
 
 const NextButton = styled.button`
