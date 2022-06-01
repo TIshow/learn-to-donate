@@ -17,14 +17,19 @@ const Top: React.FC = () => {
   const NextQuestion = () => {
     if (questionNumber === 0) {
       setQuestionNumber(1);
+      setSelected(0);
     } else if (questionNumber === 1) {
       setQuestionNumber(2);
+      setSelected(0);
     } else if (questionNumber === 2) {
       setQuestionNumber(3);
+      setSelected(0);
     } else if (questionNumber === 3) {
       setQuestionNumber(4);
+      setSelected(0);
     } else if (questionNumber === 4) {
       setQuestionNumber(5);
+      setSelected(0);
     }
   };
 
