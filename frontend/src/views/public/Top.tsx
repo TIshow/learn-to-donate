@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 // image
 import USER_IMG from '../static/user_icon.png';
-// import LOGO from '../static/logo.png';
 
 // style
 import styled, { keyframes } from 'styled-components';
