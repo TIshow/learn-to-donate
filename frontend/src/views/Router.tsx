@@ -8,6 +8,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 // Import Components
 import Top from './public/Top';
 import SelectOrganization from './public/SelectOrganization';
+import SelectCategory from './public/SelectCategory';
 
 const Router: React.FC = () => {
 
@@ -15,7 +16,8 @@ const Router: React.FC = () => {
     <>
       <Routes>
         <Route path="/" element={<Top />} />
-        <Route path="/organization" element={< SelectOrganization />} />
+        <Route path="/organization" element={<SelectOrganization />} />
+        <Route path="/category" element={<SelectCategory />} />
       </Routes>
     </>
   );
