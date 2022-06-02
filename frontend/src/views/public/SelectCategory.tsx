@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 // image
-import UNICEF_IMG from '../static/unicef.png';
-import KAMONOHASHI_IMG from '../static/kamonohashi.png';
-import ASHINAGA_IMG from '../static/ashinaga.png';
-import ISHIDAN_IMG from '../static/ishidan.png';
+import ENGLISH_ICON from '../static/english.png'
+import SCIENCE_ICON from '../static/science.png'
+import CLIMATE_ICON from '../static/climate.png'
+import FOOD_ICON from '../static/food.png'
 
 // style
 import styled, { keyframes } from 'styled-components';
@@ -16,22 +16,22 @@ const data = {
     {
       title: "English",
       description: "The United Nations International Children's Emergency Fund",
-      imageURL: UNICEF_IMG,
+      imageURL: ENGLISH_ICON,
     },
     {
       title: "Science",
       description: "売春宿に売られ、無理やり働かされてしまう子どもを助ける",
-      imageURL: KAMONOHASHI_IMG,
+      imageURL: SCIENCE_ICON,
     },
     {
       title: "Climate Change",
       description: "病気や災害、自死（自殺）などで親を亡くした子どもたちを助ける",
-      imageURL: ASHINAGA_IMG,
+      imageURL: CLIMATE_ICON,
     },
     {
       title: "Food Waste",
       description: "戦闘による死傷者や国外に避難する人が増え続けているウクライナを助ける",
-      imageURL: ISHIDAN_IMG,
+      imageURL: FOOD_ICON,
     },
   ]
 };
@@ -53,15 +53,14 @@ const SelectCategory: React.FC = () => {
           <SignupButton onClick={() => { }}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>
-          <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: "center" }}>Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span></h1>
+          <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: "center" }}>Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Mission</span></h1>
           <CardsContainer>
             {data?.organizations.slice(0, 40).map((item, index) => (
               <Link key={index} to={`/`} style={{ textDecoration: 'none' }}>
                 <Card key={index}>
-                  <img src={item.imageURL} style={{ width: '100%' }} alt={"TOP_IMG"} />
+                  <img src={item.imageURL} style={{ width: '50%' }} alt={"TOP_IMG"} />
                   <div style={{ padding: '16px' }}>
-                    <h2 style={{ textAlign: 'left' }}>{item.title}</h2>
-                    <p style={{ paddingTop: '8px', textAlign: 'left' }}>{item.description}</p>
+                    <h2 style={{ textAlign: 'center' }}>{item.title}</h2>
                   </div>
                 </Card>
               </Link>
@@ -159,49 +158,10 @@ const CardsContainer = styled.div`
 `
 
 const Card = styled.div`
-  background-color: ${Color.PRIMARY_COLOR};
+  background-color: Transparent;
   border-radius: 16px;
-  color: #1D1D1F;
+  color: #FFFFFF;
   text-align: center;
-`
-
-const NextButton = styled.button`
-  position: relative;
-  width: 100px;
-  height: 40px;
-  margin-top: 16px;
-  color: ${Color.ACCENT_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #FFFFFF;
-    background-color: ${Color.ACCENT_COLOR};
-    border: 1px solid ${Color.ACCENT_COLOR};
-  }
-`
-
-const SelectButton = styled.button`
-  position: relative;
-  width: 95%;
-  height: 60px;
-  margin-top: 16px;
-  padding: 16px;
-  background-color: Transparent;
-  font-size: 16px;
-  border: 2px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #FFFFFF;
-    background-color: ${Color.ACCENT_COLOR};
-    border: 2px solid ${Color.ACCENT_COLOR};
-  }
 `
 
 const fadeIn = keyframes`

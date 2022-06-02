@@ -56,7 +56,7 @@ const SelectOrganization: React.FC = () => {
           <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: "center" }}>Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span></h1>
           <CardsContainer>
             {data?.organizations.slice(0, 40).map((item, index) => (
-              <Link key={index} to={`/`} style={{ textDecoration: 'none' }}>
+              <Link key={index} to={`/category`} style={{ textDecoration: 'none' }}>
                 <Card key={index}>
                   <img src={item.imageURL} style={{ width: '100%' }} alt={"TOP_IMG"} />
                   <div style={{ padding: '16px' }}>
@@ -163,45 +163,6 @@ const Card = styled.div`
   border-radius: 16px;
   color: #1D1D1F;
   text-align: center;
-`
-
-const NextButton = styled.button`
-  position: relative;
-  width: 100px;
-  height: 40px;
-  margin-top: 16px;
-  color: ${Color.ACCENT_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #FFFFFF;
-    background-color: ${Color.ACCENT_COLOR};
-    border: 1px solid ${Color.ACCENT_COLOR};
-  }
-`
-
-const SelectButton = styled.button`
-  position: relative;
-  width: 95%;
-  height: 60px;
-  margin-top: 16px;
-  padding: 16px;
-  background-color: Transparent;
-  font-size: 16px;
-  border: 2px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #FFFFFF;
-    background-color: ${Color.ACCENT_COLOR};
-    border: 2px solid ${Color.ACCENT_COLOR};
-  }
 `
 
 const fadeIn = keyframes`
