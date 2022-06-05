@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  react-frontend:
+    container_name: learn-to-donate-frontend-container
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/:/frontend
+    working_dir: /frontend
+    ports:
+      - 3000:3000
+    command: sh -c "cd /frontend && yarn install && yarn start"
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
