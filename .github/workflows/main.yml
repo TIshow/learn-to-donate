@@ -31,4 +31,4 @@ jobs:
       - name: ESLint
         run: cd frontend && npx eslint --fix .
       - name: Prettier
-        run: cd frontend && yarn fix:prettier
+        run: cd frontend && npx prettier --write .
