@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '16'
       - name: install
-        run: yarn install
+        run: cd frontend && yarn install
       - name: ESLint
         run: cd frontend && yarn fix:eslint
       - name: Prettier
