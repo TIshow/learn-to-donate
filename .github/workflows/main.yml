@@ -29,6 +29,6 @@ jobs:
       - name: install
         run: cd frontend && yarn install
       - name: ESLint
-        run: cd frontend && yarn fix:eslint
+        run: cd frontend && npx eslint --fix .
       - name: Prettier
         run: cd frontend && yarn fix:prettier
