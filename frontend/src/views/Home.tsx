@@ -1,76 +1,74 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
 // image
-import ENGLISH_ICON from '../static/english.png'
-import SCIENCE_ICON from '../static/science.png'
-import CLIMATE_ICON from '../static/climate.png'
-import FOOD_ICON from '../static/food.png'
+import styled, { keyframes } from 'styled-components'
+import UNICEF_IMG from './static/unicef.png'
+import KAMONOHASHI_IMG from './static/kamonohashi.png'
+import ASHINAGA_IMG from './static/ashinaga.png'
+import ISHIDAN_IMG from './static/ishidan.png'
 
 // style
-import styled, { keyframes } from 'styled-components'
-import Color from '../styles/Color'
+import Color from './styles/Color'
 
 const data = {
   organizations: [
     {
-      title: 'English',
+      title: 'UNICEF',
       description: "The United Nations International Children's Emergency Fund",
-      imageURL: ENGLISH_ICON,
+      imageURL: UNICEF_IMG,
     },
     {
-      title: 'Science',
+      title: 'かものはしプロジェクト',
       description: '売春宿に売られ、無理やり働かされてしまう子どもを助ける',
-      imageURL: SCIENCE_ICON,
+      imageURL: KAMONOHASHI_IMG,
     },
     {
-      title: 'Climate Change',
+      title: 'あしなが育英会',
       description: '病気や災害、自死（自殺）などで親を亡くした子どもたちを助ける',
-      imageURL: CLIMATE_ICON,
+      imageURL: ASHINAGA_IMG,
     },
     {
-      title: 'Food Waste',
+      title: '国境なき医師団',
       description: '戦闘による死傷者や国外に避難する人が増え続けているウクライナを助ける',
-      imageURL: FOOD_ICON,
+      imageURL: ISHIDAN_IMG,
     },
   ],
 }
 
-const SelectCategory: React.FC = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate()
 
   // if (loading) return <Loading />;
 
   return (
-    <>
-      <TopContainer>
-        <TopBar>
-          <Title onClick={() => navigate('/')}>
-            {/* <img src={LOGO} style={{ maxWidth: '60%', height: 'auto' }} alt={"LOGO"} /> */}
-            Sket
-          </Title>
-          <LoginButton onClick={() => {}}>Login</LoginButton>
-          <SignupButton onClick={() => {}}>Sign up</SignupButton>
-        </TopBar>
-        <BodyContainer>
-          <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>
-            Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Mission</span>
-          </h1>
-          <CardsContainer>
-            {data?.organizations.slice(0, 40).map((item, index) => (
-              <Link key={index} to={`/`} style={{ textDecoration: 'none' }}>
-                <Card key={index}>
-                  <img src={item.imageURL} style={{ width: '50%' }} alt={'TOP_IMG'} />
-                  <div style={{ padding: '16px' }}>
-                    <h2 style={{ textAlign: 'center' }}>{item.title}</h2>
-                  </div>
-                </Card>
-              </Link>
-            ))}
-          </CardsContainer>
-        </BodyContainer>
-      </TopContainer>
-    </>
+    <TopContainer>
+      <TopBar>
+        <Title onClick={() => navigate('/')}>
+          Sket
+        </Title>
+        <LoginButton>Login</LoginButton>
+        <SignupButton>Sign up</SignupButton>
+      </TopBar>
+      <BodyContainer>
+        <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>
+          Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span>
+        </h1>
+        <CardsContainer>
+          {data?.organizations.slice(0, 40).map((item, index) => (
+            <Link to="/category" style={{ textDecoration: 'none' }}>
+              <Card>
+                <img src={item.imageURL} style={{ width: '100%' }} alt="TOP_IMG" />
+                <div style={{ padding: '16px' }}>
+                  <h2 style={{ textAlign: 'left' }}>{item.title}</h2>
+                  <p style={{ paddingTop: '8px', textAlign: 'left' }}>{item.description}</p>
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </CardsContainer>
+      </BodyContainer>
+    </TopContainer >
   )
 }
 
@@ -160,9 +158,9 @@ const CardsContainer = styled.div`
 `
 
 const Card = styled.div`
-  background-color: Transparent;
+  background-color: ${Color.PRIMARY_COLOR};
   border-radius: 16px;
-  color: #ffffff;
+  color: #1d1d1f;
   text-align: center;
 `
 
@@ -179,4 +177,4 @@ const FadeIn = styled.div`
   animation: ${fadeIn} 0.8s ease-in-out;
 `
 
-export default SelectCategory
+export default Home
