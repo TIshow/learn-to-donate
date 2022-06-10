@@ -49,8 +49,8 @@ const SelectCategory: React.FC = () => {
             {/* <img src={LOGO} style={{ maxWidth: '60%', height: 'auto' }} alt={"LOGO"} /> */}
             Sket
           </Title>
-          <LoginButton onClick={() => {}}>Login</LoginButton>
-          <SignupButton onClick={() => {}}>Sign up</SignupButton>
+          <LoginButton onClick={() => { }}>Login</LoginButton>
+          <SignupButton onClick={() => { }}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>
           <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>
@@ -58,7 +58,7 @@ const SelectCategory: React.FC = () => {
           </h1>
           <CardsContainer>
             {data?.organizations.slice(0, 40).map((item, index) => (
-              <Link key={index} to={`/`} style={{ textDecoration: 'none' }}>
+              <Link key={index} to={`/quest`} style={{ textDecoration: 'none' }}>
                 <Card key={index}>
                   <img src={item.imageURL} style={{ width: '50%' }} alt={'TOP_IMG'} />
                   <div style={{ padding: '16px' }}>
