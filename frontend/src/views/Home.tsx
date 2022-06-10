@@ -7,6 +7,7 @@ import UNICEF_IMG from './static/unicef.png'
 import KAMONOHASHI_IMG from './static/kamonohashi.png'
 import ASHINAGA_IMG from './static/ashinaga.png'
 import ISHIDAN_IMG from './static/ishidan.png'
+import UKRAIN_IMG from './static/ukrain.jpeg'
 
 // style
 import Color from './styles/Color'
@@ -14,23 +15,28 @@ import Color from './styles/Color'
 const data = {
   organizations: [
     {
+      title: 'Stand with Ukraine',
+      description: 'Support for the Ukrainian crisis',
+      imageURL: UKRAIN_IMG,
+    },
+    {
       title: 'UNICEF',
       description: "The United Nations International Children's Emergency Fund",
       imageURL: UNICEF_IMG,
     },
     {
-      title: 'かものはしプロジェクト',
-      description: '売春宿に売られ、無理やり働かされてしまう子どもを助ける',
+      title: 'Kamonohashi Project',
+      description: 'Helping a child who is sold to a brothel and forced to work',
       imageURL: KAMONOHASHI_IMG,
     },
     {
-      title: 'あしなが育英会',
-      description: '病気や災害、自死（自殺）などで親を亡くした子どもたちを助ける',
+      title: 'Ashinaga Foundation',
+      description: 'Helping children who have lost their parents due to illness, disaster, suicide, etc.',
       imageURL: ASHINAGA_IMG,
     },
     {
-      title: '国境なき医師団',
-      description: '戦闘による死傷者や国外に避難する人が増え続けているウクライナを助ける',
+      title: 'Medecins Sans Frontieres',
+      description: 'Helping casualties and evacuees abroad',
       imageURL: ISHIDAN_IMG,
     },
   ],
@@ -58,7 +64,7 @@ const Home: React.FC = () => {
           {data?.organizations.slice(0, 40).map((item, index) => (
             <Link to="/category" style={{ textDecoration: 'none' }}>
               <Card>
-                <img src={item.imageURL} style={{ width: '100%' }} alt="TOP_IMG" />
+                <img src={item.imageURL} style={{ width: '100%', height: '240px' }} alt="TOP_IMG" />
                 <div style={{ padding: '16px' }}>
                   <h2 style={{ textAlign: 'left' }}>{item.title}</h2>
                   <p style={{ paddingTop: '8px', textAlign: 'left' }}>{item.description}</p>
@@ -76,7 +82,7 @@ const TopContainer = styled.div`
   position: relative;
   background-color: ${Color.BASE_COLOR};
   max-width: 100%;
-  height: 1000px;
+  height: 100%;
 `
 
 const BodyContainer = styled.div`
