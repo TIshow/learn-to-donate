@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 // image
-import UNICEF_IMG from '../static/unicef.png';
-import KAMONOHASHI_IMG from '../static/kamonohashi.png';
-import ASHINAGA_IMG from '../static/ashinaga.png';
-import ISHIDAN_IMG from '../static/ishidan.png';
+import UNICEF_IMG from '../static/unicef.png'
+import KAMONOHASHI_IMG from '../static/kamonohashi.png'
+import ASHINAGA_IMG from '../static/ashinaga.png'
+import ISHIDAN_IMG from '../static/ishidan.png'
 
 // style
-import styled, { keyframes } from 'styled-components';
-import Color from '../styles/Color';
+import styled, { keyframes } from 'styled-components'
+import Color from '../styles/Color'
 
 const data = {
   organizations: [
     {
-      title: "UNICEF",
+      title: 'UNICEF',
       description: "The United Nations International Children's Emergency Fund",
       imageURL: UNICEF_IMG,
     },
     {
-      title: "かものはしプロジェクト",
-      description: "売春宿に売られ、無理やり働かされてしまう子どもを助ける",
+      title: 'かものはしプロジェクト',
+      description: '売春宿に売られ、無理やり働かされてしまう子どもを助ける',
       imageURL: KAMONOHASHI_IMG,
     },
     {
-      title: "あしなが育英会",
-      description: "病気や災害、自死（自殺）などで親を亡くした子どもたちを助ける",
+      title: 'あしなが育英会',
+      description: '病気や災害、自死（自殺）などで親を亡くした子どもたちを助ける',
       imageURL: ASHINAGA_IMG,
     },
     {
-      title: "国境なき医師団",
-      description: "戦闘による死傷者や国外に避難する人が増え続けているウクライナを助ける",
+      title: '国境なき医師団',
+      description: '戦闘による死傷者や国外に避難する人が増え続けているウクライナを助ける',
       imageURL: ISHIDAN_IMG,
     },
-  ]
-};
+  ],
+}
 
 const SelectOrganization: React.FC = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // if (loading) return <Loading />;
 
@@ -49,16 +49,18 @@ const SelectOrganization: React.FC = () => {
             {/* <img src={LOGO} style={{ maxWidth: '60%', height: 'auto' }} alt={"LOGO"} /> */}
             Sket
           </Title>
-          <LoginButton onClick={() => { }}>Login</LoginButton>
-          <SignupButton onClick={() => { }}>Sign up</SignupButton>
+          <LoginButton onClick={() => {}}>Login</LoginButton>
+          <SignupButton onClick={() => {}}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>
-          <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: "center" }}>Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span></h1>
+          <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>
+            Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span>
+          </h1>
           <CardsContainer>
             {data?.organizations.slice(0, 40).map((item, index) => (
               <Link key={index} to={`/category`} style={{ textDecoration: 'none' }}>
                 <Card key={index}>
-                  <img src={item.imageURL} style={{ width: '100%' }} alt={"TOP_IMG"} />
+                  <img src={item.imageURL} style={{ width: '100%' }} alt={'TOP_IMG'} />
                   <div style={{ padding: '16px' }}>
                     <h2 style={{ textAlign: 'left' }}>{item.title}</h2>
                     <p style={{ paddingTop: '8px', textAlign: 'left' }}>{item.description}</p>
@@ -70,8 +72,8 @@ const SelectOrganization: React.FC = () => {
         </BodyContainer>
       </TopContainer>
     </>
-  );
-};
+  )
+}
 
 const TopContainer = styled.div`
   position: relative;
@@ -92,7 +94,7 @@ const Title = styled.div`
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
- `
+`
 
 const TopBar = styled.div`
   position: fixed;
@@ -146,7 +148,7 @@ const SignupButton = styled.button`
     color: ${Color.ACCENT_COLOR};
     background-color: Transparent;
     border: 1px solid ${Color.ACCENT_COLOR};
-}
+  }
 `
 
 const CardsContainer = styled.div`
@@ -161,7 +163,7 @@ const CardsContainer = styled.div`
 const Card = styled.div`
   background-color: ${Color.PRIMARY_COLOR};
   border-radius: 16px;
-  color: #1D1D1F;
+  color: #1d1d1f;
   text-align: center;
 `
 
@@ -172,10 +174,10 @@ const fadeIn = keyframes`
   to {
     opacity: 1;
   }
-`;
+`
 
 const FadeIn = styled.div`
-  animation: ${fadeIn} .8s ease-in-out;
-`;
+  animation: ${fadeIn} 0.8s ease-in-out;
+`
 
-export default SelectOrganization;
+export default SelectOrganization
