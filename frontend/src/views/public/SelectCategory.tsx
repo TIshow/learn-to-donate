@@ -49,8 +49,8 @@ const SelectCategory: React.FC = () => {
             {/* <img src={LOGO} style={{ maxWidth: '60%', height: 'auto' }} alt={"LOGO"} /> */}
             Sket
           </Title>
-          <LoginButton onClick={() => { }}>Login</LoginButton>
-          <SignupButton onClick={() => { }}>Sign up</SignupButton>
+          <LoginButton onClick={() => {}}>Login</LoginButton>
+          <SignupButton onClick={() => {}}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>
           <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>

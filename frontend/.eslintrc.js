@@ -21,17 +21,12 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
-  "ignorePatterns": [
-    ".eslintrc.js"
-  ],
+  plugins: ['react', '@typescript-eslint'],
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
-    'no-use-before-define': "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    'import/prefer-default-export': "off",
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
       {
@@ -54,17 +49,14 @@ module.exports = {
         allowAsStatement: true,
       },
     ],
-    "react/function-component-definition": [
-      2,
-      { "namedComponents": "arrow-function" }
-    ]
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
   },
   settings: {
     'import/resolver': {
       node: {
         paths: ['src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
   },
-};
+}

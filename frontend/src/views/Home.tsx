@@ -50,9 +50,7 @@ const Home: React.FC = () => {
   return (
     <TopContainer>
       <TopBar>
-        <Title onClick={() => navigate('/')}>
-          Sket
-        </Title>
+        <Title onClick={() => navigate('/')}>Sket</Title>
         <LoginButton>Login</LoginButton>
         <SignupButton>Sign up</SignupButton>
       </TopBar>
@@ -74,7 +72,7 @@ const Home: React.FC = () => {
           ))}
         </CardsContainer>
       </BodyContainer>
-    </TopContainer >
+    </TopContainer>
   )
 }
 
