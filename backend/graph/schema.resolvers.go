@@ -5,7 +5,6 @@ package graph
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/TIshow/learn-to-donate/db"
@@ -18,8 +17,6 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	db, err := db.ConnectDB()
 	if err != nil {
 		panic(err)
-	} else {
-		fmt.Println("successful...")
 	}
 
 	var user model.User
@@ -37,8 +34,6 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	_, err = db.Exec(`INSERT INTO users (username, email, password, created_at, updated_at, is_deleted) VALUES (?, ?, ?, ?, ?, ?)`, user.Username, user.Email, hashedPassword, user.CreatedAt, user.UpdatedAt, user.IsDeleted)
 	if err != nil {
 		panic(err)
-	} else {
-		fmt.Println("successful...")
 	}
 
 	defer db.Close()
