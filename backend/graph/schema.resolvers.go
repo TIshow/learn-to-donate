@@ -5,6 +5,7 @@ package graph
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/TIshow/learn-to-donate/db"
@@ -39,6 +40,10 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	defer db.Close()
 
 	return &user, nil
+}
+
+func (r *mutationResolver) LoginUser(ctx context.Context, input model.LoginUser) (*model.User, error) {
+	panic(fmt.Errorf("not implemented"))
 }
 
 func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
