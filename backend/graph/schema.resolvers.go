@@ -11,6 +11,7 @@ import (
 	"github.com/TIshow/learn-to-donate/db"
 	"github.com/TIshow/learn-to-donate/graph/generated"
 	"github.com/TIshow/learn-to-donate/graph/model"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
@@ -30,7 +31,10 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	now := time.Now()
 	user.CreatedAt, user.UpdatedAt = now, now
 
-	_, err = db.Exec(`INSERT INTO users (username, email, password, created_at, updated_at, is_deleted) VALUES (?, ?, ?, ?, ?, ?)`, user.Username, user.Email, user.Password, user.CreatedAt, user.UpdatedAt, user.IsDeleted)
+	// hashing password
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
+
+	_, err = db.Exec(`INSERT INTO users (username, email, password, created_at, updated_at, is_deleted) VALUES (?, ?, ?, ?, ?, ?)`, user.Username, user.Email, hashedPassword, user.CreatedAt, user.UpdatedAt, user.IsDeleted)
 	if err != nil {
 		panic(err)
 	} else {
