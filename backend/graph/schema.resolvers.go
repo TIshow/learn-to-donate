@@ -5,30 +5,40 @@ package graph
 
 import (
 	"context"
+	"fmt"
+	"time"
 
+	"github.com/TIshow/learn-to-donate/db"
 	"github.com/TIshow/learn-to-donate/graph/generated"
 	"github.com/TIshow/learn-to-donate/graph/model"
 )
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
-	// user := &model.User{
-	// 	ID:        fmt.Sprintf("T%d", rand.Int()),
-	// 	Username:  input.Username,
-	// 	Email:     input.Email,
-	// 	Password:  input.Password,
-	// 	CreatedAt: input.created_at,
-	// 	UpdatedAt: input.updated_at,
-	// 	IsDeleted: input.is_deleted,
-	// }
-	// r.users = append(r.users, user)
-	// return user, nil
+	db, err := db.ConnectDB()
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println("successful...")
+	}
+
 	var user model.User
 	user.Username = input.Username
 	user.Email = input.Email
 	user.Password = input.Password
-	user.CreatedAt = input.CreatedAt
-	user.UpdatedAt = input.UpdatedAt
-	user.IsDeleted = input.IsDeleted
+	user.IsDeleted = false
+
+	now := time.Now()
+	user.CreatedAt, user.UpdatedAt = now, now
+
+	_, err = db.Exec(`INSERT INTO users (username, email, password, created_at, updated_at, is_deleted) VALUES (?, ?, ?, ?, ?, ?)`, user.Username, user.Email, user.Password, user.CreatedAt, user.UpdatedAt, user.IsDeleted)
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println("successful...")
+	}
+
+	defer db.Close()
+
 	return &user, nil
 }
 

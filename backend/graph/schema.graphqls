@@ -22,9 +22,6 @@ input NewUser {
   username: String!
   email: String!
   password: String!
-  created_at: Time!
-  updated_at: Time!
-  is_deleted: Boolean!
 }
 
 type Mutation {
