@@ -5,11 +5,9 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/TIshow/learn-to-donate/graph"
-	"github.com/TIshow/learn-to-donate/graph/generated"
+	"github.com/TIshow/learn-to-donate/pkg/graph"
+	"github.com/TIshow/learn-to-donate/pkg/graph/generated"
 )
-
-const defaultPort = "3306"
 
 func main() {
 	envLoad() // Load from .env file

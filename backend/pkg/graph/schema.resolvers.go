@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/TIshow/learn-to-donate/db"
-	"github.com/TIshow/learn-to-donate/graph/generated"
-	"github.com/TIshow/learn-to-donate/graph/model"
+	"github.com/TIshow/learn-to-donate/pkg/graph/generated"
+	"github.com/TIshow/learn-to-donate/pkg/graph/model"
 	"golang.org/x/crypto/bcrypt"
 )
 

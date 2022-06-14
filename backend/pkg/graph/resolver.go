@@ -1,6 +1,6 @@
 package graph
 
-import "github.com/TIshow/learn-to-donate/graph/model"
+import "github.com/TIshow/learn-to-donate/pkg/graph/model"
 
 // This file will not be regenerated automatically.
 //
