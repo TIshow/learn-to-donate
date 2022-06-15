@@ -15,9 +15,10 @@ import (
 )
 
 type Credentials struct {
-	Id       int64  `db:"id" json:"id"`
-	Username string `db:"username" json:"username"`
-	Password string `db:"password" json:"password"`
+	Id        int64     `db:"id" json:"id"`
+	Username  string    `db:"username" json:"username"`
+	Password  string    `db:"password" json:"password"`
+	CreatedAt time.Time `db:"created_at" json:"create_at"`
 }
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
@@ -59,10 +60,10 @@ func (r *mutationResolver) LoginUser(ctx context.Context, input model.LoginUser)
 	user.Email = input.Email
 	user.Password = input.Password
 
-	result := db.QueryRow(`SELECT id, username, password FROM users WHERE email=?;`, user.Email)
+	result := db.QueryRow(`SELECT id, username, password, created_at FROM users WHERE email=?;`, user.Email)
 
 	// Store the obtained password from DB in `storedCreds`
-	if err = result.Scan(&stored.Id, &stored.Username, &stored.Password); err != nil {
+	if err = result.Scan(&stored.Id, &stored.Username, &stored.Password, &stored.CreatedAt); err != nil {
 		return nil, err
 	}
 
@@ -73,6 +74,7 @@ func (r *mutationResolver) LoginUser(ctx context.Context, input model.LoginUser)
 	// Store fetched DB data
 	user.ID = strconv.Itoa(int(stored.Id))
 	user.Username = stored.Username
+	user.CreatedAt = stored.CreatedAt
 
 	defer db.Close()
 
