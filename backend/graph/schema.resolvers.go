@@ -8,9 +8,11 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/99designs/gqlgen/graphql"
 	"github.com/TIshow/learn-to-donate/db"
 	"github.com/TIshow/learn-to-donate/graph/generated"
 	"github.com/TIshow/learn-to-donate/graph/model"
+	"github.com/vektah/gqlparser/v2/gqlerror"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -52,7 +54,14 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 func (r *mutationResolver) LoginUser(ctx context.Context, input model.LoginUser) (*model.User, error) {
 	db, err := db.ConnectDB()
 	if err != nil {
-		panic(err)
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "Can't establich DB connection.",
+			Extensions: map[string]interface{}{
+				"code": "INTERNAL_SERVER_ERROR",
+			},
+		})
+		return nil, err
 	}
 
 	stored := &Credentials{}
@@ -64,10 +73,24 @@ func (r *mutationResolver) LoginUser(ctx context.Context, input model.LoginUser)
 
 	// Store the obtained password from DB in `storedCreds`
 	if err = result.Scan(&stored.Id, &stored.Username, &stored.Password, &stored.CreatedAt); err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "No email match",
+			Extensions: map[string]interface{}{
+				"code": "AUTHENTICATION_ERROR",
+			},
+		})
 		return nil, err
 	}
 
 	if err = bcrypt.CompareHashAndPassword([]byte(stored.Password), []byte(user.Password)); err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "Password dones't match",
+			Extensions: map[string]interface{}{
+				"code": "AUTHENTICATION_ERROR",
+			},
+		})
 		return nil, err
 	}
 
