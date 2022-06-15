@@ -23,7 +23,7 @@ type Credentials struct {
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
 	db, err := db.ConnectDB()
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	var user model.User
@@ -60,18 +60,14 @@ func (r *mutationResolver) LoginUser(ctx context.Context, input model.LoginUser)
 	user.Password = input.Password
 
 	result := db.QueryRow(`SELECT id, username, password FROM users WHERE email=?;`, user.Email)
-	if err != nil {
-		panic(err)
-	}
 
 	// Store the obtained password from DB in `storedCreds`
-	err = result.Scan(&stored.Id, &stored.Username, &stored.Password)
-	if err != nil {
-		panic(err)
+	if err = result.Scan(&stored.Id, &stored.Username, &stored.Password); err != nil {
+		return nil, err
 	}
 
 	if err = bcrypt.CompareHashAndPassword([]byte(stored.Password), []byte(user.Password)); err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	// Store fetched DB data
