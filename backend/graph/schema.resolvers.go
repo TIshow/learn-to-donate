@@ -5,6 +5,8 @@ package graph
 
 import (
 	"context"
+	"fmt"
+	"log"
 	"strconv"
 	"time"
 
@@ -16,11 +18,12 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type Credentials struct {
-	Id        int64     `db:"id" json:"id"`
-	Username  string    `db:"username" json:"username"`
-	Password  string    `db:"password" json:"password"`
-	CreatedAt time.Time `db:"created_at" json:"create_at"`
+type QuestionsStore struct {
+	ID         string `json:"id"`
+	Question   string `json:"question"`
+	CategoryID int    `json:"category_id"`
+	IsAnswer   int    `json:"is_answer"`
+	Choice     string `json:"choice"`
 }
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
@@ -108,6 +111,56 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	return r.users, nil
 }
 
+func (r *queryResolver) Quests(ctx context.Context, categoryID string) ([]*model.QuestOutput, error) {
+	db, err := db.ConnectDB()
+	if err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "Can't establich DB connection.",
+			Extensions: map[string]interface{}{
+				"code": "INTERNAL_SERVER_ERROR",
+			},
+		})
+		return nil, err
+	}
+
+	var quests []*model.QuestOutput
+
+	sqlStatement := `
+	  SELECT questions.id, questions.question, questions.category_id, choices.is_answer, choices.choice
+		FROM questions 
+		LEFT JOIN choices 
+	  ON questions.id = choices.question_id 
+		WHERE questions.category_id=?;
+		`
+	rows, err := db.Query(sqlStatement, categoryID)
+	if err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "Can't obtain the datas.",
+			Extensions: map[string]interface{}{
+				"code": "INTERNAL_SERVER_ERROR",
+			},
+		})
+		return nil, err
+	}
+
+	for rows.Next() {
+		var stored model.QuestOutput
+		// stored := QuestionsStore{}
+		err := rows.Scan(&stored.ID, &stored.Question, &stored.CategoryID, &stored.IsAnswer, &stored.Choice)
+		if err != nil {
+			fmt.Println("ERROR!")
+			log.Fatal(err)
+		}
+		quests = append(quests, &stored)
+	}
+
+	defer db.Close()
+
+	return quests, nil
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
@@ -116,3 +169,10 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
+
+type Credentials struct {
+	Id        int64     `db:"id" json:"id"`
+	Username  string    `db:"username" json:"username"`
+	Password  string    `db:"password" json:"password"`
+	CreatedAt time.Time `db:"created_at" json:"create_at"`
+}

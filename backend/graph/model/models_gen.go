@@ -17,6 +17,14 @@ type NewUser struct {
 	Password string `json:"password"`
 }
 
+type QuestOutput struct {
+	ID         string `json:"id"`
+	Question   string `json:"question"`
+	CategoryID int    `json:"category_id"`
+	IsAnswer   int    `json:"is_answer"`
+	Choice     string `json:"choice"`
+}
+
 type User struct {
 	ID        string    `json:"id"`
 	Username  string    `json:"username"`
