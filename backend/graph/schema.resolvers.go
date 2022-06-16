@@ -147,7 +147,6 @@ func (r *queryResolver) Quests(ctx context.Context, categoryID string) ([]*model
 
 	for rows.Next() {
 		var stored model.QuestOutput
-		// stored := QuestionsStore{}
 		err := rows.Scan(&stored.ID, &stored.Question, &stored.CategoryID, &stored.IsAnswer, &stored.Choice)
 		if err != nil {
 			fmt.Println("ERROR!")
