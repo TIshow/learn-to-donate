@@ -14,8 +14,17 @@ type User {
   is_deleted: Boolean!
 }
 
+type QuestOutput {
+  id: ID!
+  question: String!
+  category_id: Int!
+  is_answer: Int!
+  choice: String!
+}
+
 type Query {
   users: [User!]!
+  quests(category_id: ID!): [QuestOutput!]!
 }
 
 input NewUser {
