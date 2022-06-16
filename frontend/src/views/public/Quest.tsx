@@ -18,7 +18,7 @@ interface Quest {
 }
 
 interface Quests {
-  Quests: Quest[]
+  quests: Quest[]
 }
 
 const GET_QUESTS = gql`
@@ -35,11 +35,11 @@ const GET_QUESTS = gql`
 
 const Quest: React.FC = () => {
   const navigate = useNavigate()
-  const [selected, setSelected] = useState<Number>(0)
-  const [questionNumber, setQuestionNumber] = useState<Number>(0)
+  const [selected, setSelected] = useState<number>(0)
+  const [questionNumber, setQuestionNumber] = useState<number>(0)
 
   const { loading, error, data } = useQuery<Quests>(GET_QUESTS, {
-    variables: { "category_id": Number(2) }
+    variables: { "category_id": 2 }
   });
 
   if (loading) return <>Loading</>;
@@ -64,13 +64,15 @@ const Quest: React.FC = () => {
     }
   }
 
+  console.log(data?.quests)
+
   const Question = () => {
     if (questionNumber === 0) {
       return (
         <FadeIn>
           <QuizContainer>
             <div style={{ fontSize: '24px', padding: '16px 8px' }}>
-              What is the name of the Ukrainian Prime Minister?
+              {data?.quests[questionNumber].question}
             </div>
             <div style={{ fontSize: '16px', padding: '16px 8px' }}>
               <SelectButton

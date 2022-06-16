@@ -1,14 +1,14 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client';
 import './index.css'
-import App from './App'
+import { createUploadLink } from 'apollo-upload-client';
 import {
   ApolloProvider,
   ApolloClient,
   createHttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import { createUploadLink } from 'apollo-upload-client';
+import App from './App'
 
 const httpLink = createUploadLink({
   uri: "http://localhost:3306/query",

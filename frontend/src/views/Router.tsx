@@ -9,14 +9,12 @@ import SelectCategory from './public/SelectCategory'
 
 const Router: React.FC = () => (
   <BrowserRouter>
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/organization" element={<SelectOrganization />} />
-        <Route path="/category" element={<SelectCategory />} />
-        <Route path="/quest" element={<Quest />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/organization" element={<SelectOrganization />} />
+      <Route path="/category" element={<SelectCategory />} />
+      <Route path="/quest" element={<Quest />} />
+    </Routes>
   </BrowserRouter >
 )
 
