@@ -11,7 +11,7 @@ import {
 import { createUploadLink } from 'apollo-upload-client';
 
 const httpLink = createUploadLink({
-  uri: "http://localhost:3306/query",  // gateway
+  uri: "http://localhost:3306/query",
 });
 
 const client = new ApolloClient({

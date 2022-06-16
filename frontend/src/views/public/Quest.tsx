@@ -18,11 +18,11 @@ interface Quest {
 }
 
 interface Quests {
-  Quests: [Quest]
+  Quests: Quest[]
 }
 
 const GET_QUESTS = gql`
-  query GetQuests($category_id: Int!) {
+  query GetQuests($category_id: ID!) {
     quests(category_id: $category_id) {
       id
       question
@@ -39,13 +39,11 @@ const Quest: React.FC = () => {
   const [questionNumber, setQuestionNumber] = useState<Number>(0)
 
   const { loading, error, data } = useQuery<Quests>(GET_QUESTS, {
-    variables: { category_id: Number(2) }
+    variables: { "category_id": Number(2) }
   });
 
   if (loading) return <>Loading</>;
   if (error) return <>`Error! ${error.message}`</>;
-
-  console.log(data)
 
   const NextQuestion = () => {
     if (questionNumber === 0) {
