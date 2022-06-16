@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useQuery, gql } from '@apollo/client';
 
 // image
 import USER_IMG from '../static/user_icon.png'
@@ -8,10 +9,43 @@ import USER_IMG from '../static/user_icon.png'
 import styled, { keyframes } from 'styled-components'
 import Color from '../styles/Color'
 
+interface Quest {
+  id: number,
+  question: string,
+  category_id: number,
+  is_answer: number,
+  choice: string,
+}
+
+interface Quests {
+  Quests: [Quest]
+}
+
+const GET_QUESTS = gql`
+  query GetQuests($category_id: Int!) {
+    quests(category_id: $category_id) {
+      id
+      question
+      category_id
+      is_answer
+      choice
+    }
+  }
+`;
+
 const Quest: React.FC = () => {
   const navigate = useNavigate()
   const [selected, setSelected] = useState<Number>(0)
   const [questionNumber, setQuestionNumber] = useState<Number>(0)
+
+  const { loading, error, data } = useQuery<Quests>(GET_QUESTS, {
+    variables: { category_id: Number(2) }
+  });
+
+  if (loading) return <>Loading</>;
+  if (error) return <>`Error! ${error.message}`</>;
+
+  console.log(data)
 
   const NextQuestion = () => {
     if (questionNumber === 0) {

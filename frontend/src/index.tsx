@@ -24,6 +24,8 @@ const root = createRoot(container as Element);
 
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>,
 )
