@@ -77,7 +77,9 @@ const Quest: React.FC = () => {
         <div>
           <FadeIn>
             <QuizContainer>
-              <div style={{ fontSize: '24px', padding: '16px 8px' }}>Where is the capital of Ukraine?</div>
+              <div style={{ fontSize: '24px', padding: '16px 8px' }}>
+                Where is the capital of Ukraine?
+              </div>
               <div style={{ fontSize: '16px', padding: '16px 8px' }}>
                 <SelectButton
                   style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
@@ -292,8 +294,8 @@ const Quest: React.FC = () => {
             {/* <img src={LOGO} style={{ maxWidth: '60%', height: 'auto' }} alt={"LOGO"} /> */}
             Sket
           </Title>
-          <LoginButton onClick={() => {}}>Login</LoginButton>
-          <SignupButton onClick={() => {}}>Sign up</SignupButton>
+          <LoginButton onClick={() => { }}>Login</LoginButton>
+          <SignupButton onClick={() => { }}>Sign up</SignupButton>
         </TopBar>
         <BodyContainer>{Question()}</BodyContainer>
       </TopContainer>
