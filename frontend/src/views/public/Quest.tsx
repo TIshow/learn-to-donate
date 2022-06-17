@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql, useLazyQuery } from '@apollo/client';
 
 // image
 import USER_IMG from '../static/user_icon.png'
@@ -23,7 +23,7 @@ interface Quests {
 
 const GET_QUESTS = gql`
   query GetQuests($category_id: ID!) {
-    quests(category_id: $category_id) {
+    quests(category_id: $category_id){
       id
       question
       category_id
@@ -38,9 +38,18 @@ const Quest: React.FC = () => {
   const [selected, setSelected] = useState<number>(0)
   const [questionNumber, setQuestionNumber] = useState<number>(0)
 
-  const { loading, error, data } = useQuery<Quests>(GET_QUESTS, {
-    variables: { "category_id": 2 }
+  const [QuestQuery, { loading, error, data }] = useLazyQuery<Quests>(GET_QUESTS, {
+    fetchPolicy: "no-cache",
+    variables: { "category_id": 2 },
+    onError: (error) => console.log(error.message),
+    onCompleted: (data) => {
+      console.log(data)
+    },
   });
+
+  useEffect(() => {
+    QuestQuery();
+  }, []);
 
   if (loading) return <>Loading</>;
   if (error) return <>`Error! ${error.message}`</>;
@@ -338,141 +347,141 @@ const Quest: React.FC = () => {
 }
 
 const TopContainer = styled.div`
-  position: relative;
-  background-color: ${Color.BASE_COLOR};
-  max-width: 100%;
-  height: 1000px;
-`
+    position: relative;
+    background-color: ${Color.BASE_COLOR};
+    max-width: 100%;
+    height: 1000px;
+    `
 
 const BodyContainer = styled.div`
-  padding: 160px 0;
-  background-color: Transparent;
-`
+    padding: 160px 0;
+    background-color: Transparent;
+    `
 
 const Title = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-`
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    `
 
 const TopBar = styled.div`
-  position: fixed;
-  display: flex;
-  z-index: 1;
-  background-color: Transparent;
-  width: 100%;
-  height: 60px;
-  top: 4%;
-  left: 2%;
-  font-size: 40px;
-  color: ${Color.PRIMARY_COLOR};
-`
+    position: fixed;
+    display: flex;
+    z-index: 1;
+    background-color: Transparent;
+    width: 100%;
+    height: 60px;
+    top: 4%;
+    left: 2%;
+    font-size: 40px;
+    color: ${Color.PRIMARY_COLOR};
+    `
 
 const LoginButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 200px;
-  height: 52px;
-  width: 100px;
-  color: ${Color.PRIMARY_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.PRIMARY_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: ${Color.ACCENT_COLOR};
+    position: absolute;
+    top: 20px;
+    right: 200px;
+    height: 52px;
+    width: 100px;
+    color: ${Color.PRIMARY_COLOR};
+    background-color: Transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid ${Color.PRIMARY_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: ${Color.ACCENT_COLOR};
     background-color: Transparent;
     border: 1px solid ${Color.ACCENT_COLOR};
   }
-`
+    `
 
 const SignupButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 80px;
-  height: 52px;
-  width: 100px;
-  color: ${Color.PRIMARY_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.PRIMARY_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: ${Color.ACCENT_COLOR};
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    height: 52px;
+    width: 100px;
+    color: ${Color.PRIMARY_COLOR};
+    background-color: Transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid ${Color.PRIMARY_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: ${Color.ACCENT_COLOR};
     background-color: Transparent;
     border: 1px solid ${Color.ACCENT_COLOR};
   }
-`
+    `
 
 const QuizContainer = styled.div`
-  height: 500px;
-  width: 360px;
-  background-color: #ffffff;
-  color: #2f2f2f;
-  text-align: center;
-  margin: auto;
-  border-radius: 16px;
-`
+    height: 500px;
+    width: 360px;
+    background-color: #ffffff;
+    color: #2f2f2f;
+    text-align: center;
+    margin: auto;
+    border-radius: 16px;
+    `
 
 const NextButton = styled.button`
-  position: relative;
-  width: 100px;
-  height: 40px;
-  margin-top: 16px;
-  color: ${Color.ACCENT_COLOR};
-  background-color: Transparent;
-  font-size: 16px;
-  font-weight: bold;
-  border: 1px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #ffffff;
+    position: relative;
+    width: 100px;
+    height: 40px;
+    margin-top: 16px;
+    color: ${Color.ACCENT_COLOR};
+    background-color: Transparent;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid ${Color.ACCENT_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: #ffffff;
     background-color: ${Color.ACCENT_COLOR};
     border: 1px solid ${Color.ACCENT_COLOR};
   }
-`
+    `
 
 const SelectButton = styled.button`
-  position: relative;
-  width: 95%;
-  height: 60px;
-  margin-top: 16px;
-  padding: 16px;
-  background-color: Transparent;
-  font-size: 16px;
-  border: 2px solid ${Color.ACCENT_COLOR};
-  border-radius: 16px;
-  transition: 0.4s;
-  cursor: pointer;
-  :hover {
-    color: #ffffff;
+    position: relative;
+    width: 95%;
+    height: 60px;
+    margin-top: 16px;
+    padding: 16px;
+    background-color: Transparent;
+    font-size: 16px;
+    border: 2px solid ${Color.ACCENT_COLOR};
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+    :hover {
+      color: #ffffff;
     background-color: ${Color.ACCENT_COLOR};
     border: 2px solid ${Color.ACCENT_COLOR};
   }
-`
+    `
 
 const fadeIn = keyframes`
-  from {
-    opacity: 0;
+    from {
+      opacity: 0;
   }
-  to {
-    opacity: 1;
+    to {
+      opacity: 1;
   }
-`
+    `
 
 const FadeIn = styled.div`
-  animation: ${fadeIn} 0.8s ease-in-out;
-`
+    animation: ${fadeIn} 0.8s ease-in-out;
+    `
 
 export default Quest
