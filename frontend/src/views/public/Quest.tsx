@@ -77,37 +77,22 @@ const Quest: React.FC = () => {
 
   const Question = () => {
     if (questionNumber === 0) {
+      let subset = data?.quests.slice(0, 4);
       return (
         <FadeIn>
           <QuizContainer>
             <div style={{ fontSize: '24px', padding: '16px 8px' }}>
-              {data?.quests[questionNumber].question}
+              {data?.quests[0].question}
             </div>
             <div style={{ fontSize: '16px', padding: '16px 8px' }}>
-              <SelectButton
-                style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(1)}
-              >
-                Aleksandr Lukashenko
-              </SelectButton>
-              <SelectButton
-                style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(2)}
-              >
-                Denys Shmyhal
-              </SelectButton>
-              <SelectButton
-                style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(3)}
-              >
-                Volodymyr Zelenskyy
-              </SelectButton>
-              <SelectButton
-                style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(4)}
-              >
-                Mikhail Mishustin
-              </SelectButton>
+              {subset?.map((item, index) => (
+                <SelectButton
+                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
+                  onClick={() => setSelected(1)}
+                >
+                  {item.choice}
+                </SelectButton>
+              ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <NextButton onClick={() => NextQuestion()}>Next</NextButton>
@@ -116,78 +101,46 @@ const Quest: React.FC = () => {
         </FadeIn>
       )
     } else if (questionNumber === 1) {
-      return (
-        <div>
-          <FadeIn>
-            <QuizContainer>
-              <div style={{ fontSize: '24px', padding: '16px 8px' }}>
-                Where is the capital of Ukraine?
-              </div>
-              <div style={{ fontSize: '16px', padding: '16px 8px' }}>
-                <SelectButton
-                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(1)}
-                >
-                  New York
-                </SelectButton>
-                <SelectButton
-                  style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(2)}
-                >
-                  Kiev
-                </SelectButton>
-                <SelectButton
-                  style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(3)}
-                >
-                  Tallinn
-                </SelectButton>
-                <SelectButton
-                  style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(4)}
-                >
-                  Moscow
-                </SelectButton>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <NextButton onClick={() => NextQuestion()}>Next</NextButton>
-              </div>
-            </QuizContainer>
-          </FadeIn>
-        </div>
-      )
-    } else if (questionNumber === 2) {
+      let subset = data?.quests.slice(4, 8);
       return (
         <FadeIn>
           <QuizContainer>
             <div style={{ fontSize: '24px', padding: '16px 8px' }}>
-              What does the yellow color of the Ukrainian flag indicate?
+              {data?.quests[4].question}
             </div>
             <div style={{ fontSize: '16px', padding: '16px 8px' }}>
-              <SelectButton
-                style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(1)}
-              >
-                Wheat
-              </SelectButton>
-              <SelectButton
-                style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(2)}
-              >
-                Corn
-              </SelectButton>
-              <SelectButton
-                style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(3)}
-              >
-                Potatoes
-              </SelectButton>
-              <SelectButton
-                style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(4)}
-              >
-                Banana
-              </SelectButton>
+              {subset?.map((item, index) => (
+                <SelectButton
+                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
+                  onClick={() => setSelected(1)}
+                >
+                  {item.choice}
+                </SelectButton>
+              ))}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+            </div>
+          </QuizContainer>
+        </FadeIn>
+      )
+    } else if (questionNumber === 2) {
+      let subset = data?.quests.slice(8, 12);
+      return (
+        <FadeIn>
+          <QuizContainer>
+            <div style={{ fontSize: '24px', padding: '16px 8px' }}>
+              {data?.quests[8].question}
+            </div>
+            <div style={{ fontSize: '16px', padding: '16px 8px' }}>
+              {subset?.map((item, index) => (
+                <SelectButton
+                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
+                  onClick={() => setSelected(1)}
+                >
+                  {item.choice}
+                </SelectButton>
+              ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <NextButton onClick={() => NextQuestion()}>Next</NextButton>
@@ -196,76 +149,23 @@ const Quest: React.FC = () => {
         </FadeIn>
       )
     } else if (questionNumber === 3) {
-      return (
-        <div>
-          <FadeIn>
-            <QuizContainer>
-              <div style={{ fontSize: '24px', padding: '16px 8px' }}>How big is Ukraine's population?</div>
-              <div style={{ fontSize: '16px', padding: '16px 8px' }}>
-                <SelectButton
-                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(1)}
-                >
-                  44.13 million
-                </SelectButton>
-                <SelectButton
-                  style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(2)}
-                >
-                  20.22 million
-                </SelectButton>
-                <SelectButton
-                  style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(3)}
-                >
-                  5 million
-                </SelectButton>
-                <SelectButton
-                  style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                  onClick={() => setSelected(4)}
-                >
-                  100.11 million
-                </SelectButton>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <NextButton onClick={() => NextQuestion()}>Next</NextButton>
-              </div>
-            </QuizContainer>
-          </FadeIn>
-        </div>
-      )
-    } else if (questionNumber === 4) {
+      let subset = data?.quests.slice(12, 16);
+      console.log(subset)
       return (
         <FadeIn>
           <QuizContainer>
             <div style={{ fontSize: '24px', padding: '16px 8px' }}>
-              In what year was the Ukrainian Ground Force founded?
+              {data?.quests[12].question}
             </div>
             <div style={{ fontSize: '16px', padding: '16px 8px' }}>
-              <SelectButton
-                style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(1)}
-              >
-                1991
-              </SelectButton>
-              <SelectButton
-                style={selected === 2 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(2)}
-              >
-                2001
-              </SelectButton>
-              <SelectButton
-                style={selected === 3 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(3)}
-              >
-                1881
-              </SelectButton>
-              <SelectButton
-                style={selected === 4 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
-                onClick={() => setSelected(4)}
-              >
-                1771
-              </SelectButton>
+              {subset?.map((item, index) => (
+                <SelectButton
+                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
+                  onClick={() => setSelected(1)}
+                >
+                  {item.choice}
+                </SelectButton>
+              ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <NextButton onClick={() => NextQuestion()}>Next</NextButton>
@@ -273,56 +173,29 @@ const Quest: React.FC = () => {
           </QuizContainer>
         </FadeIn>
       )
-    } else {
+    } else if (questionNumber === 4) {
+      let subset = data?.quests.slice(16, 20);
       return (
-        <div>
-          <FadeIn>
-            <QuizContainer>
-              <div style={{ padding: '16px' }}>
-                <img src={USER_IMG} style={{ width: '30%', borderRadius: '50%' }} alt={'TOP_IMG'} />
-                <div style={{ paddingTop: '16px' }}>Sket太郎</div>
-                <div>Lv.12</div>
-                <div
-                  style={{
-                    width: '100%',
-                    height: '16px',
-                    marginTop: '16px',
-                    border: `2px solid ${Color.ACCENT_COLOR}`,
-                    borderRadius: '16px',
-                  }}
+        <FadeIn>
+          <QuizContainer>
+            <div style={{ fontSize: '24px', padding: '16px 8px' }}>
+              {data?.quests[16].question}
+            </div>
+            <div style={{ fontSize: '16px', padding: '16px 8px' }}>
+              {subset?.map((item, index) => (
+                <SelectButton
+                  style={selected === 1 ? { backgroundColor: `${Color.ACCENT_COLOR}`, color: '#FFFFFF' } : {}}
+                  onClick={() => setSelected(1)}
                 >
-                  <div
-                    style={{
-                      width: '70%',
-                      height: '16px',
-                      borderRadius: '16px',
-                      backgroundColor: `${Color.ACCENT_COLOR}`,
-                    }}
-                  />
-                </div>
-                <div>次のレベルまであと30sket</div>
-              </div>
-              <div
-                style={{
-                  position: 'relative',
-                  padding: '16px',
-                  margin: '8px 16px',
-                  border: `2px solid ${Color.ACCENT_COLOR}`,
-                  borderRadius: '16px',
-                }}
-              >
-                <div style={{ fontSize: '40px' }}>Congrats !!</div>
-                <div style={{ marginTop: '16px' }}>
-                  あなたのおかげでウクライナ難民の子ども一人の一日分の食事が確保されました！
-                </div>
-                <div>ありがとうございます！</div>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <NextButton onClick={() => NextQuestion()}>シェアする</NextButton>
-                </div>
-              </div>
-            </QuizContainer>
-          </FadeIn>
-        </div>
+                  {item.choice}
+                </SelectButton>
+              ))}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <NextButton onClick={() => NextQuestion()}>Next</NextButton>
+            </div>
+          </QuizContainer>
+        </FadeIn>
       )
     }
   }
