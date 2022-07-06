@@ -50,15 +50,12 @@ const Home: React.FC = () => {
   return (
     <TopContainer>
       <TopBar>
-        <Title onClick={() => navigate('/')}>Sket</Title>
+        <Title onClick={() => navigate('/')}>sket</Title>
         <LoginButton>Login</LoginButton>
         <SignupButton>Sign up</SignupButton>
       </TopBar>
       <BodyContainer>
-        <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>
-          Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span>
-        </h1>
-        <CardsContainer>
+        {/* <CardsContainer>
           {data?.organizations.slice(0, 40).map((item, index) => (
             <Link to="/category" style={{ textDecoration: 'none' }}>
               <Card>
@@ -70,7 +67,38 @@ const Home: React.FC = () => {
               </Card>
             </Link>
           ))}
-        </CardsContainer>
+        </CardsContainer> */}
+        <div>
+          <div style={{ display: 'flex', width: '100%', height: '200px', margin: '20px 0' }}>
+            <img src={UNICEF_IMG} style={{ height: '100%' }} alt="TOP_IMG" />
+            <div style={{ padding: '16px' }}>
+              <div style={{ fontSize: '32px' }}>People in Tokyo asked to turn off lights in heat wave</div>
+              <div>Japanese government has asked people to use less electricity during a heat wave</div>
+              <div>level: 0</div>
+              <div>Donated: $110</div>
+            </div>
+          </div>
+          <div style={{ borderBottom: '1px solid #424242' }} />
+          <div style={{ display: 'flex', width: '100%', height: '200px', margin: '20px 0' }}>
+            <img src={KAMONOHASHI_IMG} style={{ height: '100%' }} alt="TOP_IMG" />
+            <div style={{ padding: '16px' }}>
+              <div style={{ fontSize: '32px' }}>People in Tokyo asked to turn off lights in heat wave</div>
+              <div>Japanese government has asked people to use less electricity during a heat wave</div>
+              <div>level: 0</div>
+              <div>Donated: $110</div>
+            </div>
+          </div>
+          <div style={{ borderBottom: '1px solid #424242' }} />
+          <div style={{ display: 'flex', width: '100%', height: '200px', margin: '20px 0' }}>
+            <img src={UKRAIN_IMG} style={{ height: '100%' }} alt="TOP_IMG" />
+            <div style={{ padding: '16px' }}>
+              <div style={{ fontSize: '32px' }}>People in Tokyo asked to turn off lights in heat wave</div>
+              <div>Japanese government has asked people to use less electricity during a heat wave</div>
+              <div>level: 0</div>
+              <div>Donated: $110</div>
+            </div>
+          </div>
+        </div>
       </BodyContainer>
     </TopContainer>
   )
@@ -84,7 +112,7 @@ const TopContainer = styled.div`
 `
 
 const BodyContainer = styled.div`
-  padding: 160px 0;
+  padding: 160px;
   background-color: Transparent;
 `
 
