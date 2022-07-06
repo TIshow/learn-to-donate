@@ -55,9 +55,6 @@ const Home: React.FC = () => {
         <SignupButton>Sign up</SignupButton>
       </TopBar>
       <BodyContainer>
-        <h1 style={{ color: '#FFFFFF', padding: '0 0 60px 60px', textAlign: 'center' }}>
-          Select the <span style={{ color: `${Color.ACCENT_COLOR}` }}>Quest</span>
-        </h1>
         <CardsContainer>
           {data?.organizations.slice(0, 40).map((item, index) => (
             <Link to="/category" style={{ textDecoration: 'none' }}>
