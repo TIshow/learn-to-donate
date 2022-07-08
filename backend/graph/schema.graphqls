@@ -22,6 +22,20 @@ type QuestOutput {
   choice: String!
 }
 
+type NewsOutput {
+  id: ID!
+  title: String!
+  description: String!
+  content: String!
+  level: Int!
+  donated: Int!
+  image_url: String!
+  sket_point: Int!
+  category_id: Int!
+  created_at: Time!
+  is_deleted: Boolean!
+}
+
 type Query {
   users: [User!]!
   quests(category_id: ID!): [QuestOutput!]!
