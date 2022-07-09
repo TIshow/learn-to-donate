@@ -18,14 +18,6 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type QuestionsStore struct {
-	ID         string `json:"id"`
-	Question   string `json:"question"`
-	CategoryID int    `json:"category_id"`
-	IsAnswer   int    `json:"is_answer"`
-	Choice     string `json:"choice"`
-}
-
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
 	db, err := db.ConnectDB()
 	if err != nil {
@@ -111,6 +103,51 @@ func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	return r.users, nil
 }
 
+func (r *queryResolver) News(ctx context.Context) ([]*model.NewsOutput, error) {
+	db, err := db.ConnectDB()
+	if err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "Can't establich DB connection.",
+			Extensions: map[string]interface{}{
+				"code": "INTERNAL_SERVER_ERROR",
+			},
+		})
+		return nil, err
+	}
+
+	var news []*model.NewsOutput
+
+	sqlStatement := `SELECT * FROM news;`
+
+	rows, err := db.Query(sqlStatement)
+	if err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Path:    graphql.GetPath(ctx),
+			Message: "Can't obtain the news data.",
+			Extensions: map[string]interface{}{
+				"code": "INTERNAL_SERVER_ERROR",
+			},
+		})
+		return nil, err
+	}
+
+	for rows.Next() {
+		var stored model.NewsOutput
+		err := rows.Scan(&stored.ID, &stored.Title, &stored.Description, &stored.Content, &stored.Level, &stored.Donated, &stored.ImageURL, &stored.SketPoint, &stored.CategoryID, &stored.CreatedAt, &stored.IsDeleted)
+		if err != nil {
+			fmt.Println("ERROR!")
+			log.Fatal(err)
+		}
+		news = append(news, &stored)
+	}
+
+	defer db.Close()
+
+	return news, nil
+
+}
+
 func (r *queryResolver) Quests(ctx context.Context, categoryID string) ([]*model.QuestOutput, error) {
 	db, err := db.ConnectDB()
 	if err != nil {
@@ -169,6 +206,19 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
 
+// !!! WARNING !!!
+// The code below was going to be deleted when updating resolvers. It has been copied here so you have
+// one last chance to move it out of harms way if you want. There are two reasons this happens:
+//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
+//    it when you're done.
+//  - You have helper methods in this file. Move them out to keep these resolver files clean.
+type QuestionsStore struct {
+	ID         string `json:"id"`
+	Question   string `json:"question"`
+	CategoryID int    `json:"category_id"`
+	IsAnswer   int    `json:"is_answer"`
+	Choice     string `json:"choice"`
+}
 type Credentials struct {
 	Id        int64     `db:"id" json:"id"`
 	Username  string    `db:"username" json:"username"`
