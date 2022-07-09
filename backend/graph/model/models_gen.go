@@ -17,6 +17,20 @@ type NewUser struct {
 	Password string `json:"password"`
 }
 
+type NewsOutput struct {
+	ID          string    `json:"id"`
+	Title       string    `json:"title"`
+	Description string    `json:"description"`
+	Content     string    `json:"content"`
+	Level       int       `json:"level"`
+	Donated     int       `json:"donated"`
+	ImageURL    string    `json:"image_url"`
+	SketPoint   int       `json:"sket_point"`
+	CategoryID  int       `json:"category_id"`
+	CreatedAt   time.Time `json:"created_at"`
+	IsDeleted   bool      `json:"is_deleted"`
+}
+
 type QuestOutput struct {
 	ID         string `json:"id"`
 	Question   string `json:"question"`

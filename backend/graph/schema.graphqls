@@ -38,6 +38,7 @@ type NewsOutput {
 
 type Query {
   users: [User!]!
+  news: [NewsOutput!]!
   quests(category_id: ID!): [QuestOutput!]!
 }
 
